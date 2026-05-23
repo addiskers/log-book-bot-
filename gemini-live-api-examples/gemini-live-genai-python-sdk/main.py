@@ -18,8 +18,8 @@ load_dotenv()
 
 # Configure logging - DEBUG for our modules, INFO for everything else
 logging.basicConfig(level=logging.INFO)
-logging.getLogger("gemini_live").setLevel(logging.DEBUG)
-logging.getLogger(__name__).setLevel(logging.DEBUG)
+logging.getLogger("gemini_live").setLevel(logging.INFO)
+logging.getLogger(__name__).setLevel(logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Configuration
@@ -59,7 +59,7 @@ def handle_check_feature(**kwargs):
         "emergency": "Emergency management module includes real-time evacuation tracking, SMS/email alert broadcasts, reunification workflows, incident management, and live occupancy visibility.",
         "analytics": "Advanced analytics with real-time dashboards, visitor trend reports, occupancy analytics, exportable compliance reports, and custom reporting capabilities.",
         "integration": "LogBook360 integrates with Google Workspace, Microsoft Outlook, ADP, Oracle PeopleSoft, Oracle HCM Cloud, Workday, and major access control systems.",
-        "ai": "AL3i is LogBook360's built-in AI assistant providing voice-driven visitor interactions, multilingual support, real-time navigation guidance, and smart scheduling assistance.",
+        "ai": "ALBi is LogBook360's built-in AI assistant providing voice-driven visitor interactions, multilingual support, real-time navigation guidance, and smart scheduling assistance.",
         "facial": "LogBook360 supports facial recognition integrations for enhanced identity verification and touchless check-in experiences.",
         "qr": "QR-code based workflows are built into LogBook360 for pre-registered and walk-in visitor check-in and check-out.",
         "nda": "Digital NDA acceptance and policy acknowledgement workflows are built into the visitor check-in process with full audit trail.",

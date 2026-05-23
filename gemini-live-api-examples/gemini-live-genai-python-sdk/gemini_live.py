@@ -70,7 +70,7 @@ ANALYTICS & REPORTING: Real-time dashboards, visitor analytics, occupancy trends
 
 INTEGRATIONS: Google Workspace, Microsoft Outlook, iOS/Android calendars, ADP, Oracle PeopleSoft, Oracle HCM Cloud, Workday, ERP systems, HRIS systems, access control systems.
 
-AL3i AI ASSISTANT: Voice-driven visitor interactions, appointment scheduling assistance, real-time navigation guidance, multilingual support, smart host assistance, automated reminders, turn-by-turn navigation. Operates through kiosks, mobile apps, and visitor phones.
+ALBi AI ASSISTANT: Voice-driven visitor interactions, appointment scheduling assistance, real-time navigation guidance, multilingual support, smart host assistance, automated reminders, turn-by-turn navigation. Operates through kiosks, mobile apps, and visitor phones.
 
 ## INDUSTRY RESPONSES
 
@@ -246,11 +246,13 @@ class GeminiLive:
                 try:
                     while True:
                         async for response in session.receive():
-                            logger.debug(f"Received response from Gemini: {response}")
-                            
-                            # Log the raw response type for debugging
+                            logger.debug("Received response from Gemini")
+
+                            # Handle GoAway — Gemini is signaling session end, close gracefully
                             if response.go_away:
                                 logger.warning(f"Received GoAway from Gemini: {response.go_away}")
+                                await event_queue.put({"type": "go_away"})
+                                return
                             if response.session_resumption_update:
                                 logger.info(f"Session resumption update: {response.session_resumption_update}")
                             
