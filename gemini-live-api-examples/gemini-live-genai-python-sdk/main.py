@@ -163,7 +163,10 @@ async def websocket_endpoint(websocket: WebSocket):
         ):
             if event:
                 # Forward events (transcriptions, etc) to client
-                await websocket.send_json(event)
+                try:
+                    await websocket.send_json(event)
+                except RuntimeError:
+                    break
 
     try:
         await run_session()

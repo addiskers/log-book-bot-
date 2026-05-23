@@ -254,7 +254,7 @@ class GeminiLive:
                                 await event_queue.put({"type": "go_away"})
                                 return
                             if response.session_resumption_update:
-                                logger.info(f"Session resumption update: {response.session_resumption_update}")
+                                logger.debug(f"Session resumption update: {response.session_resumption_update}")
                             
                             server_content = response.server_content
                             tool_call = response.tool_call
