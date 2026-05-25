@@ -121,6 +121,11 @@ class MediaHandler {
       this.audioContext.close();
       this.audioContext = null;
     }
+    this.nextStartTime = 0;
+    this.scheduledSources.forEach((s) => {
+      try { s.stop(); s.disconnect(); } catch (e) {}
+    });
+    this.scheduledSources = [];
   }
 
   async startVideo(videoElement, onFrame) {
