@@ -105,7 +105,22 @@ class MediaHandler {
       this.audioWorkletNode.disconnect();
       this.audioWorkletNode = null;
     }
-    this.inputAnalyser = null;
+    if (this.inputAnalyser) {
+      this.inputAnalyser.disconnect();
+      this.inputAnalyser = null;
+    }
+    if (this.outputAnalyser) {
+      this.outputAnalyser.disconnect();
+      this.outputAnalyser = null;
+    }
+    if (this.outputGain) {
+      this.outputGain.disconnect();
+      this.outputGain = null;
+    }
+    if (this.audioContext && this.audioContext.state !== "closed") {
+      this.audioContext.close();
+      this.audioContext = null;
+    }
   }
 
   async startVideo(videoElement, onFrame) {

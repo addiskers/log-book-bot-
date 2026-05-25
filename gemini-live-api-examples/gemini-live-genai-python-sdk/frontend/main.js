@@ -257,7 +257,14 @@ function renderDemoPanel(data) {
 
 // --- Message Handling ---
 function handleJsonMessage(msg) {
-  if (msg.type === "interrupted") {
+  if (msg.type === "status") {
+    const statusDiv = document.createElement("div");
+    statusDiv.className = "msg system";
+    statusDiv.innerHTML = `<span class="msg-text" style="color:#f59e0b;font-style:italic;">${msg.text}</span>`;
+    document.getElementById("messages").appendChild(statusDiv);
+    scrollMessages();
+    return;
+  } else if (msg.type === "interrupted") {
     mediaHandler.stopAudioPlayback();
     currentGeminiMessageDiv = null;
     currentUserMessageDiv = null;
